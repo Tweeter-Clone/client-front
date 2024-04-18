@@ -1,16 +1,19 @@
 <template>
 	<div id="app">
-		<NavBar v-if="isNotHomeRoute" />
+		<LeftNavbar v-if="isNotHomeRoute" />
+		<RightNavbar v-if="isNotHomeRoute" />
 		<router-view />
 	</div>
 </template>
 <script>
 // @ is an alias to /src
-import NavBar from '@/components/NavBar.vue';
+import LeftNavbar from '@/components/LeftNavbar.vue';
+import RightNavbar from '@/components/RightNavbar.vue';
 
 export default {
 	components: {
-		NavBar,
+		LeftNavbar,
+		RightNavbar
 	},
 	computed: {
 		isNotHomeRoute() {
@@ -23,3 +26,9 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+#app {
+	font-family: 'Poppins', sans-serif;
+}
+</style>

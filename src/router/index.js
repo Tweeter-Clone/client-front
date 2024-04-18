@@ -3,8 +3,7 @@ import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
-import MyTweetView from '../views/MyTweetView.vue';
-import AllTweetView from '../views/AllTweetView.vue';
+import TweetView from '../views/TweetView.vue';
 
 Vue.use(VueRouter);
 
@@ -27,15 +26,9 @@ const routes = [
 		meta: { requiresGuest: true },
 	},
 	{
-		path: '/mytweet',
-		name: 'mytweet',
-		component: MyTweetView,
-		meta: { requiresAuth: true },
-	},
-	{
-		path: '/alltweet',
-		name: 'alltweet',
-		component: AllTweetView,
+		path: '/tweet',
+		name: 'tweet',
+		component: TweetView,
 		meta: { requiresAuth: true },
 	},
 ];

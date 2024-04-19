@@ -28,9 +28,9 @@
 							<font-awesome-icon icon="fa-solid fa-ellipsis-h" />
 						</button>
 						<div v-if="showDropdown && !editMode" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
-							<a v-if="currentId === userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-							<a v-if="currentId === userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete</a>
-							<a v-if="currentId !== userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Follow</a>
+							<a v-if="currentId === userId" @click.prevent="toggleEditMode" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Edit</a>
+							<a v-if="currentId === userId" @click.prevent="deleteTweet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Delete</a>
+							<a v-if="currentId !== userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Follow</a>
 						</div>
 					</div>
 				</div>
@@ -67,18 +67,14 @@
 				<p v-if="createdAt !== updatedAt"><span class="mx-[4px]">·</span><span class="text-gray-500">{{ createdAt === updatedAt ? '' : 'Edited' }}</span></p>
 			</div>
 			<div class="action flex justify-end gap-5">
-				<router-link :to="`/tweet`" class="hover:text-gray-500">
-					<font-awesome-icon icon="far fa-comment" /> Comment ({{
-						comments
-					}})</router-link
+				<button class="hover:text-gray-500">
+					<font-awesome-icon icon="far fa-comment" /> Comment (0)</button
 				>
 				<button
 					type="button"
 					class="hover:text-gray-500"
 				>
-					<font-awesome-icon :icon="isLiked === 0 ? 'far fa-heart' : 'fa-solid fa-heart'" /> Love ({{
-						likes
-					}})
+					<font-awesome-icon icon="far fa-heart" /> Love (0)
 				</button>
 			</div>
 		</div>
@@ -96,9 +92,6 @@ export default {
 		userId: Number,
 		username: String,
 		content: String,
-		comments: Number,
-		likes: Number,
-		isLiked: Number,
 		createdAt: String,
 		updatedAt: String,
 	},
@@ -108,8 +101,6 @@ export default {
 			loading: false,
 			showDropdown: false, // Added state to control dropdown visibility
 		};
-	},
-	mounted() {
 	},
 	methods: {
 		toggleDropdown() {
@@ -132,10 +123,9 @@ export default {
 				return daysAgo + 'd ago';
 			}
 		},
-
 		formatCreatedAt(dateTime) {
 			return format(new Date(dateTime), 'dd MMMM yyyy');
-        }
+		},
 	},
 	computed: {
 		remainingCharacters() {

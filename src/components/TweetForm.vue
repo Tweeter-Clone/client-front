@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded px-5 py-3 border border-inherit">
+	<div class="rounded px-5 py-3 border border-inherit bg-white">
 		<div class="flex gap-5">
 			<img
 				src="@/assets/devcode-logo.png"

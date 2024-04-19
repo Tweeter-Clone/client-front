@@ -21,12 +21,8 @@
 				:userId="tweet.user_id"
 				:username="tweet.username"
 				:content="tweet.content"
-				:comments="0"
-				:likes="0"
-				:isLiked="0"
 				:createdAt="tweet.created_at"
 				:updatedAt="tweet.updated_at"
-				@liked="getTweet"
 			/>
 		</div>
 		<div v-else class="flex justify-center bg-white px-5 py-[24px] text-[#999999] font-semibold text-[24px] items-center">

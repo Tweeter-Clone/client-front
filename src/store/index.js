@@ -57,6 +57,31 @@ export default new Vuex.Store({
 				return false;
 			}
 		},
+		async addTweet(context, payload) {
+			try {
+				const response = await axios.post(`${BASE_URL}/tweets`, payload, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('token')}`,
+						'Content-Type': 'application/json',
+					},
+				});
+				return response;
+			} catch (error) {
+				return error;
+			}
+		},
+		async getTweets() {
+			try {
+				const response = await axios.get(`${BASE_URL}/tweets`, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('token')}`,
+					},
+				});
+				return response;
+			} catch (error) {
+				return error;
+			}
+		},
 	},
 	modules: {},
 });

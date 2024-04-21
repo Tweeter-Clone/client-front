@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded p-5 border border-inherit" @click="showDropdown = false">
+	<div class="rounded p-5 border-inherit" @click="showDropdown = false">
 		<div class="flex gap-5 pb-5">
 			<img
 				v-if="currentId !== userId"
@@ -38,7 +38,7 @@
 				<form v-if="editMode" @submit.prevent="updateTweet">
 					<textarea
 						v-model="tweet"
-						class="w-full mt-2 p-2 border border-gray-300 rounded-md resize-none block"
+						class="w-full mt-2 p-2 border-gray-300 rounded-md resize-none block"
 						placeholder="What's happening?"
 						rows="3"
 						cols="100"

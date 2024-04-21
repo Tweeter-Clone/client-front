@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto w-[60%] py-[34px]">
 	<nav class="fixed z-20 top-0 left-0 w-full bg-white">
-		<a href="/tweet" class="w-[60%] flex items-center mx-auto p-2 border border-b-2 border-solid gap-2 text-[16px] hover:opacity-[0.8] uppercase">
+		<a href="/tweet" class="w-[60%] flex items-center mx-auto p-2 border-b-2 border-solid gap-2 text-[16px] hover:opacity-[0.8] uppercase">
             <font-awesome-icon icon="fa fa-arrow-left" /> 
 			Comment
         </a>
@@ -38,7 +38,7 @@
         @comments="getComment"
 			/>
 		</div>
-		<div v-else class="flex justify-center bg-white px-5 py-[24px] text-[#999999] font-semibold text-[24px] items-center">
+		<div v-else class="flex justify-center bg-white px-5 py-[24px] text-[#999999] font-semibold text-[24px] items-center uppercase">
 		NO COMMENT
 	</div>
 	</div>

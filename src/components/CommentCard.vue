@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded p-5 my-2 border border-inherit w-full">
+	<div class="rounded p-5 my-2 border-inherit w-full">
 		<div class="flex gap-5 pb-5">
 			<img
 				v-if="currentId !== userId"

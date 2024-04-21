@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded px-5 py-3 mt-2 border border-inherit bg-white">
+	<div class="rounded px-5 py-3 mt-2 border-inherit bg-white">
 		<div class="flex gap-5">
 			<img
 				v-if="currentId !== userId"
@@ -45,7 +45,7 @@
 		<form @submit.prevent="addComment">
 			<textarea
 				v-model="newComment"
-				class="w-full p-2 border border-gray-300 rounded-md resize-none block mb-2 mt-4"
+				class="w-full p-2 border-gray-300 rounded-md resize-none block mb-2 mt-4"
 				placeholder="Write your comment..."
 				rows="2"
 			></textarea>

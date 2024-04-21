@@ -29,6 +29,7 @@
 					</div>
       </div>
     </div>
+    <div class="fixed z-40 h-screen w-1/5 bg-white border-l-2 border-solid top-0 right-0"></div>
   </div>
 </template>
 
@@ -69,4 +70,3 @@ export default {
 	},
 };
 </script>
-

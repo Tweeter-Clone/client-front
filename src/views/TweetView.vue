@@ -10,7 +10,7 @@
 				} cursor-pointer text-[16px] uppercase`">FOLLOWING</span>
 		</div>
 	</nav>
-	<div class="flex justify-center bg-white h-screen px-5 text-[#999999] font-semibold text-[24px] items-center">
+	<div class="flex justify-center bg-white h-screen px-5 text-[#999999] font-semibold text-[24px] items-center uppercase">
 		NO TWEET
 	</div>
 </div>

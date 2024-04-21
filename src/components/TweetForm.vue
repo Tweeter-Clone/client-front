@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded px-5 py-3 mt-2 border border-inherit bg-white">
+	<div class="rounded px-5 py-3 mt-2 border-inherit bg-white">
 		<div class="flex gap-5">
 			<img
 				src="@/assets/devcode-logo.png"
@@ -18,7 +18,7 @@
 				<form @submit="addTweet">
 					<textarea
 						v-model="tweet"
-						class="w-full mt-2 p-2 border border-gray-300 rounded-md resize-none block"
+						class="w-full mt-2 p-2 border-gray-300 rounded-md resize-none block"
 						placeholder="What's happening?"
 						rows="3"
 						cols="100"

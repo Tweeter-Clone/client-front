@@ -6,7 +6,7 @@
         <TweetForm :userId="currentId" :username="currentUsername" @click.stop/>
       </div>
     </div>
-    <div class="fixed z-40 h-screen w-1/5 bg-white border border-r-2 border-solid">
+    <div class="fixed z-40 h-screen w-1/5 bg-white border-r-2 border-solid">
       <div class="flex flex-col items-center justify-between h-full">
         <div class="p-4">
           <h1 class="text-[24px] mb-[28px]">TweeTopia</h1>

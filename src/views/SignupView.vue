@@ -13,7 +13,7 @@
 				{{ loginErrorMessage }}
 			</div>
 			<form @submit="signup">
-				<div class="relative my-3 border-solid border rounded" >
+				<div class="relative my-3 border-solid rounded" >
 					<input
 						type="text"
 						class="peer block min-h-[auto] w-full rounded border-0 focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"

@@ -97,6 +97,7 @@ export default {
 	},
 	data() {
 		return {
+			editMode: false,
 			tweet: '',
 			loading: false,
 			showDropdown: false, // Added state to control dropdown visibility
@@ -125,6 +126,36 @@ export default {
 		},
 		formatCreatedAt(dateTime) {
 			return format(new Date(dateTime), 'dd MMMM yyyy');
+		},
+
+		async deleteTweet() {
+			const confirmation = confirm(
+				'Are you sure you want to delete this tweet?'
+			);
+			if (confirmation) {
+				await this.$store.dispatch('deleteTweet', this.id);
+				this.$parent.getTweet();
+			}
+		},
+		toggleEditMode() {
+			this.editMode = !this.editMode;
+			if (this.editMode) {
+				this.tweet = this.content;
+			}
+		},
+		async updateTweet() {
+			this.loading = true; // Set loading state
+			try {
+				const payload = {
+					id: this.id,
+					content: this.tweet,
+				};
+				await this.$store.dispatch('updateTweet', payload);
+			} finally {
+				this.loading = false;
+				this.toggleEditMode();
+				this.$parent.getTweet();
+			}
 		},
 	},
 	computed: {

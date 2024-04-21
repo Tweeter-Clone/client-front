@@ -113,6 +113,89 @@ export default new Vuex.Store({
 				return error;
 			}
 		},
+		async addLike(context, id) {
+			try {
+				const response = await axios.post(
+					`${BASE_URL}/tweets/${id}/likes`,
+					{ tweetId: id },
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`,
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				return response;
+			} catch (error) {
+				console.error('Error fetching comments:', error.message);
+				throw error; // Rethrow the error to propagate it further if needed
+			}
+		},
+		async deleteLike(context, payload) {
+			try {
+				const response = await axios.delete(
+					`${BASE_URL}/likes/${payload.likeId}`,
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`,
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				return response;
+			} catch (error) {
+				console.error('Error fetching comments:', error.message);
+				throw error; // Rethrow the error to propagate it further if needed
+			}
+		},
+		async getComment(context, id) {
+			try {
+				const response = await axios.get(`${BASE_URL}/tweets/${id}/comments`, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('token')}`,
+						'Content-Type': 'application/json',
+					},
+				});
+				return response;
+			} catch (error) {
+				console.error('Error fetching comments:', error.message);
+				throw error; // Rethrow the error to propagate it further if needed
+			}
+		},
+		async addComment(context, { payload, id }) {
+			try {
+				const response = await axios.post(
+					`${BASE_URL}/tweets/${id}/comments`,
+					payload,
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`,
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				return response;
+			} catch (error) {
+				return error;
+			}
+		},
+		async deleteComment(context, payload) {
+			try {
+				const response = await axios.delete(
+					`${BASE_URL}/tweets/${payload.tweetId}/comments/${payload.commentId}`,
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`,
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				return response;
+			} catch (error) {
+				console.error('Error fetching comments:', error.message);
+				throw error; // Rethrow the error to propagate it further if needed
+			}
+		},
 	},
 	modules: {},
 });

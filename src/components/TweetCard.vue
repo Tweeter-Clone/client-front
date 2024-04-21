@@ -67,14 +67,18 @@
 				<p v-if="createdAt !== updatedAt"><span class="mx-[4px]">·</span><span class="text-gray-500">{{ createdAt === updatedAt ? '' : 'Edited' }}</span></p>
 			</div>
 			<div class="action flex justify-end gap-5">
-				<button class="hover:text-gray-500">
-					<font-awesome-icon icon="far fa-comment" /> Comment (0)</button
-				>
+                    <router-link :to="`/tweet/${id}`" class="hover:text-gray-500">
+					<font-awesome-icon icon="far fa-comment" /> Comment ({{
+						comments
+					}})</router-link>
 				<button
 					type="button"
+                    @click="handleLike"
 					class="hover:text-gray-500"
 				>
-					<font-awesome-icon icon="far fa-heart" /> Love (0)
+					<font-awesome-icon icon="far fa-heart" /> Love ({{
+						likes
+					}})
 				</button>
 			</div>
 		</div>
@@ -92,6 +96,9 @@ export default {
 		userId: Number,
 		username: String,
 		content: String,
+		comments: Number,
+		likes: Number,
+		isLiked: Number,
 		createdAt: String,
 		updatedAt: String,
 	},
@@ -102,6 +109,10 @@ export default {
 			loading: false,
 			showDropdown: false, // Added state to control dropdown visibility
 		};
+	},
+	mounted() {
+		this.getComment();
+		this.getLike();
 	},
 	methods: {
 		toggleDropdown() {
@@ -124,6 +135,7 @@ export default {
 				return daysAgo + 'd ago';
 			}
 		},
+
 		formatCreatedAt(dateTime) {
 			return format(new Date(dateTime), 'dd MMMM yyyy');
 		},
@@ -155,6 +167,15 @@ export default {
 				this.loading = false;
 				this.toggleEditMode();
 				this.$parent.getTweet();
+			}
+		},
+		async handleLike() {
+			try{
+				await this.$store.dispatch('addLike', this.id);
+				this.$emit('getData');
+			} catch (error) {
+				await this.$store.dispatch('deleteLike', { likeId: error.response.data.id});
+				this.$emit('getData');
 			}
 		},
 	},

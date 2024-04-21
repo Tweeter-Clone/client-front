@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
 import TweetView from '../views/TweetView.vue';
+import CommentView from '../views/CommentView.vue';
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,13 @@ const routes = [
 		component: TweetView,
 		meta: { requiresAuth: true },
 	},
+	{
+		path: '/tweet/:id',
+		name: 'comment',
+		component: CommentView,
+		props: true,
+		meta: { requiresAuth: true },
+	},
 ];
 
 const router = new VueRouter({
@@ -50,7 +58,7 @@ router.beforeEach((to, from, next) => {
 		}
 	} else if (to.matched.some((route) => route.meta.requiresGuest)) {
 		if (isAuthenticated) {
-			next({ path: '/mytweet' });
+			next({ path: '/tweet' });
 		} else {
 			next();
 		}

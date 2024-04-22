@@ -8,7 +8,8 @@ const BASE_URL = 'http://localhost:3030';
 
 export default new Vuex.Store({
 	state: {},
-	mutations: {},
+	mutations: {
+	},
 	actions: {
 		async signup(context, payload) {
 			try {
@@ -112,18 +113,6 @@ export default new Vuex.Store({
 				return error;
 			}
 		},
-		async getTweetDetail(context, id) {
-			try {
-				const response = await axios.get(`${BASE_URL}/tweets/${id}`, {
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('token')}`,
-					},
-				});
-				return response;
-			} catch (error) {
-				return error;
-			}
-		},
 		async addLike(context, id) {
 			try {
 				const response = await axios.post(
@@ -142,10 +131,10 @@ export default new Vuex.Store({
 				throw error; // Rethrow the error to propagate it further if needed
 			}
 		},
-		async deleteLike(context, id) {
+		async deleteLike(context, payload) {
 			try {
 				const response = await axios.delete(
-					`${BASE_URL}/likes/${id}`,
+					`${BASE_URL}/likes/${payload.likeId}`,
 					{
 						headers: {
 							Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -205,74 +194,6 @@ export default new Vuex.Store({
 			} catch (error) {
 				console.error('Error fetching comments:', error.message);
 				throw error; // Rethrow the error to propagate it further if needed
-			}
-		},
-		async addFollower(context, id) {
-			try {
-				const response = await axios.post(
-					`${BASE_URL}/users/${id}/followers`,
-					{ followerId: id },
-					{
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem('token')}`,
-							'Content-Type': 'application/json',
-						},
-					}
-				);
-				return response;
-			} catch (error) {
-				console.error('Error fetching comments:', error.message);
-				throw error; // Rethrow the error to propagate it further if needed
-			}
-		},
-		async deleteFollower(context, id) {
-			try {
-				const response = await axios.delete(
-					`${BASE_URL}/followers/${id}`,
-					{
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem('token')}`,
-							'Content-Type': 'application/json',
-						},
-					}
-				);
-				return response;
-			} catch (error) {
-				console.error('Error fetching comments:', error.message);
-				throw error; // Rethrow the error to propagate it further if needed
-			}
-		},
-		async getUsers() {
-			try {
-				const response = await axios.get(`${BASE_URL}/users`, {
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('token')}`,
-					},
-				});
-				return response;
-			} catch (error) {
-				return error;
-			}
-		},
-		async updateUser(context, payload) {
-			try {
-				const formData = new FormData();
-				formData.append('image', payload.image);
-				formData.append('username', payload.username);
-
-				const response = await axios.put(
-					`${BASE_URL}/users/${payload.id}`,
-					formData,
-					{
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem('token')}`,
-							'Content-Type': 'multipart/form-data',
-						},
-					}
-				);
-				return response;
-			} catch (error) {
-				return error;
 			}
 		},
 	},

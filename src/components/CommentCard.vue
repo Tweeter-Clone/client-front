@@ -17,12 +17,10 @@
 				<div class="flex justify-between items-center">
 					<div>
 						<p class="text-[14px]">
-                            <router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
 							<span class="font-semibold">{{ username }}</span>
 							<span class="text-gray-400"
 								>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 							>
-                        </router-link>
 							<span class="mx-[4px]">·</span>
 						<span class="text-gray-500">{{ formatTimeAgo(createdAt) }}</span>
 						</p>
@@ -33,7 +31,7 @@
 						</button>
 						<div v-if="showDropdown" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
 							<a v-if="currentId === userId || isUserTweet" @click.prevent="deleteComment" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete</a>
-							<a v-if="currentId !== userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Follow</a>
+							<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
 						</div>
 					</div>
 				</div>

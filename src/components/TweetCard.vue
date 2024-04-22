@@ -32,11 +32,11 @@
 						<div v-if="showDropdown && !editMode" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
 							<a v-if="currentId === userId" @click.prevent="toggleEditMode" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">Edit</a>
 							<a v-if="currentId === userId" @click.prevent="deleteTweet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">Delete</a>
-							<a v-if="currentId !== userId" @click.prevent="handleFollower" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">{{ isFollowed !== 0 ? 'Unfollow' : 'Follow' }}</a>
+                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
 						</div>
 					</div>
 				</div>
-				<p class="text-[14px]" v-if="!editMode">{{ content }}</p>
+				<p class="whitespace-pre-line text-[14px]" v-if="!editMode">{{ content }}</p>
 				<form v-if="editMode" @submit.prevent="updateTweet">
 					<textarea
 						v-model="tweet"
@@ -101,7 +101,6 @@ export default {
 		comments: Number,
 		likes: Number,
 		isLiked: Number,
-		isFollowed: Number,
 		createdAt: String,
 		updatedAt: String,
 	},
@@ -114,7 +113,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.getComments();
+		this.getComment();
 		this.getLike();
 	},
 	methods: {
@@ -149,7 +148,7 @@ export default {
 			);
 			if (confirmation) {
 				await this.$store.dispatch('deleteTweet', this.id);
-				this.$parent.getTweets();
+				this.$parent.getTweet();
 			}
 		},
 		toggleEditMode() {
@@ -169,7 +168,7 @@ export default {
 			} finally {
 				this.loading = false;
 				this.toggleEditMode();
-				this.$parent.getTweets();
+				this.$parent.getTweet();
 			}
 		},
 		async handleLike() {
@@ -177,16 +176,7 @@ export default {
 				await this.$store.dispatch('addLike', this.id);
 				this.$emit('getData');
 			} catch (error) {
-				await this.$store.dispatch('deleteLike',  error.response.data.id);
-				this.$emit('getData');
-			}
-		},
-		async handleFollower() {
-			try{
-				await this.$store.dispatch('addFollower', this.userId);
-				this.$emit('getData');
-			} catch (error) {
-				await this.$store.dispatch('deleteFollower', error.response.data.id);
+				await this.$store.dispatch('deleteLike', { likeId: error.response.data.id});
 				this.$emit('getData');
 			}
 		},

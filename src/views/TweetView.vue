@@ -24,7 +24,6 @@
 				:comments="tweet.comments"
 				:likes="tweet.likes"
 				:isLiked="tweet.is_liked"
-				:isFollowed="tweet.is_followed"
 				:createdAt="tweet.created_at"
 				:updatedAt="tweet.updated_at"
 				@getData="getTweets"

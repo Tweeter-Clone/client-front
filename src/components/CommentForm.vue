@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded px-5 py-3 mt-2 border-inherit bg-white">
+	<div class="rounded px-5 py-3 mt-2 border border-inherit bg-white">
 		<div class="flex gap-5">
 			<img
 				v-if="currentId !== userId"
@@ -30,7 +30,7 @@
 				<p class="whitespace-pre-line text-[14px]">{{ content }}</p>
 			</div>
 		</div>
-		<div class="flex justify-between">
+		<div class="flex justify-between mt-2">
 			<p class="text-gray-500 text-[14px]">{{ formatCreatedAt(createdAt) }}</p>
 			<div class="action flex justify-end gap-5">
 				<button

@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
 		}
 	} else if (to.matched.some((route) => route.meta.requiresGuest)) {
 		if (isAuthenticated) {
-			next({ path: '/mytweet' });
+			next({ path: '/tweet' });
 		} else {
 			next();
 		}

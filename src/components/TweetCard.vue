@@ -71,7 +71,6 @@
 				>
 				<button
 					type="button"
-					@click="handleLike"
 					class="hover:text-gray-500 text-[14px]"
 				>
 					<font-awesome-icon icon="far fa-heart" /> Love (0)
@@ -97,10 +96,9 @@ export default {
 	},
 	data() {
 		return {
-			editMode: false,
-			tweet: '',
-			loading: false,
+            tweet: '',
 			showDropdown: false, // Added state to control dropdown visibility
+			editMode: false,
 		};
 	},
 	mounted() {

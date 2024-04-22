@@ -146,7 +146,7 @@ export default {
 			);
 			if (confirmation) {
 				await this.$store.dispatch('deleteTweet', this.id);
-				this.$parent.getTweet();
+				this.$parent.getTweets();
 			}
 		},
 		toggleEditMode() {
@@ -166,7 +166,7 @@ export default {
 			} finally {
 				this.loading = false;
 				this.toggleEditMode();
-				this.$parent.getTweet();
+				this.$parent.getTweets();
 			}
 		},
 		async handleLike() {

@@ -92,7 +92,7 @@ export default {
 		},
 		async deleteComment(){
 			await this.$store.dispatch('deleteComment', { tweetId: this.tweetId, commentId: this.id});
-			this.$emit('comments');
+			this.$emit('getData');
 		}
 	},
 	computed: {

@@ -25,7 +25,7 @@
 					</div>
 					<span class="text-gray-500">{{ formatTimeAgo(createdAt) }}</span>
 				</div>
-				<p>{{ content }}</p>
+				<p class="whitespace-pre-line">{{ content }}</p>
 			</div>
 		</div>
 		<div class="flex justify-between">
@@ -135,10 +135,10 @@ export default {
 		async handleLike() {
 			try{
 				await this.$store.dispatch('addLike', this.id);
-				this.$emit('liked');
+				this.$emit('getData');
 			} catch (error) {
 				await this.$store.dispatch('deleteLike', { tweetId: this.id, likeId: error.response.data.id});
-				this.$emit('liked');
+				this.$emit('getData');
 			}
 		},
 	},

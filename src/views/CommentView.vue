@@ -18,7 +18,7 @@
         :likes="tweet.likes"
         :isLiked="tweet.is_liked"
         :createdAt="tweet.created_at"
-        @getData="getCommentss"
+        @getData="getComments"
              />
          <h2 class="text-xl font-bold p-[24px]">
                 All Comments ({{ sortedComment.length }})

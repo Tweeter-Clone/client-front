@@ -76,7 +76,7 @@
                     @click="handleLike"
 					class="hover:text-gray-500"
 				>
-					<font-awesome-icon icon="far fa-heart" /> Love ({{
+                <font-awesome-icon :icon="isLiked === 0 ? 'far fa-heart' : 'fa-solid fa-heart'" /> Love ({{
 						likes
 					}})
 				</button>

@@ -26,7 +26,7 @@
 				:isLiked="tweet.is_liked"
 				:createdAt="tweet.created_at"
 				:updatedAt="tweet.updated_at"
-				@getData="getTweet"
+				@getData="getTweets"
 			/>
 		</div>
 		<div v-else class="flex justify-center bg-white px-5 py-[24px] text-[#999999] font-semibold text-[24px] items-center uppercase">

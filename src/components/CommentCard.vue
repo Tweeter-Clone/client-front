@@ -31,7 +31,7 @@
 						</button>
 						<div v-if="showDropdown" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
 							<a v-if="currentId === userId || isUserTweet" @click.prevent="deleteComment" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete</a>
-							<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+							<a v-if="currentId !== userId" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Follow</a>
 						</div>
 					</div>
 				</div>

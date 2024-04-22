@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto w-[60%] py-[34px]">
 	<nav class="fixed z-20 top-0 left-0 w-full bg-white">
-		<a href="/tweet" class="w-[60%] flex items-center mx-auto p-2 border-b-2 border-solid gap-2 text-[16px] hover:opacity-[0.8] uppercase">
+		<a href="/tweet" class="w-[60%] flex items-center mx-auto p-2 border-b-2 border-solid gap-2 text-[18px] hover:opacity-[0.8] uppercase">
             <font-awesome-icon icon="fa fa-arrow-left" /> 
 			Comment
         </a>
@@ -20,7 +20,7 @@
         :createdAt="tweet.created_at"
         @getData="getComments"
              />
-         <h2 class="text-xl font-bold p-[24px]">
+         <h2 class="text-[18px] font-semibold px-[24px] py-[18px]">
                 All Comments ({{ sortedComment.length }})
         </h2>
 		<div v-if="sortedComment.length > 0">

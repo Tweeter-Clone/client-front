@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
 import TweetView from '../views/TweetView.vue';
 import CommentView from '../views/CommentView.vue';
+import ProfileView from '../views/ProfileView.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,13 @@ const routes = [
 		path: '/tweet/:id',
 		name: 'comment',
 		component: CommentView,
+		props: true,
+		meta: { requiresAuth: true },
+	},
+	{
+		path: '/profile/:username',
+		name: 'profile',
+		component: ProfileView,
 		props: true,
 		meta: { requiresAuth: true },
 	},

@@ -16,25 +16,27 @@
 			<div class="w-full">
 				<div class="flex justify-between w-full">
 					<div>
-						<p>
-							<span class="font-black">{{ username }}</span>
+						<p class="text-[14px]">
+							<router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
+							<span class="font-semibold">{{ username }}</span>
 							<span class="text-gray-400"
 								>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 							>
+						</router-link>
 						</p>
 					</div>
-					<span class="text-gray-500">{{ formatTimeAgo(createdAt) }}</span>
+					<span class="text-gray-500 text-[14px]">{{ formatTimeAgo(createdAt) }}</span>
 				</div>
-				<p class="whitespace-pre-line">{{ content }}</p>
+				<p class="whitespace-pre-line text-[14px]">{{ content }}</p>
 			</div>
 		</div>
 		<div class="flex justify-between">
-			<p class="text-gray-500">{{ formatCreatedAt(createdAt) }}</p>
+			<p class="text-gray-500 text-[14px]">{{ formatCreatedAt(createdAt) }}</p>
 			<div class="action flex justify-end gap-5">
 				<button
 					type="button"
 					@click="handleLike"
-					class="hover:text-gray-500"
+					class="hover:text-gray-500 text-[14px]"
 				>
 					<font-awesome-icon :icon="isLiked === 0 ? 'far fa-heart' : 'fa-solid fa-heart'" /> Love ({{
 						likes
@@ -45,7 +47,7 @@
 		<form @submit.prevent="addComment">
 			<textarea
 				v-model="newComment"
-				class="w-full p-2 border-gray-300 rounded-md resize-none block mb-2 mt-4"
+				class="w-full p-2 border border-gray-300 rounded-md resize-none block mb-2 mt-4 text-[14px]"
 				placeholder="Write your comment..."
 				rows="2"
 			></textarea>
@@ -54,15 +56,14 @@
 					:disabled="
 						newComment.length > 280 || newComment.trim() === '' || loading
 					"
-					class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-75"
+					class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-75 text-[14px]"
 				>
 					{{ loading ? 'Loading...' : 'Reply' }}
 				</button>
 				<span
-					:class="{ 'text-red-500': newComment.length > 280 }"
-					class="text-gray-500"
-				>
-					{{ remainingCharacters }} characters remaining
+					:class="`${newComment.length > 280 ? 'text-red-500' : 'text-gray-500'} text-[14px]`"
+					>
+							{{ remainingCharacters }} characters remaining
 				</span>
 			</div>
 		</form>
@@ -137,7 +138,7 @@ export default {
 				await this.$store.dispatch('addLike', this.id);
 				this.$emit('getData');
 			} catch (error) {
-				await this.$store.dispatch('deleteLike', { tweetId: this.id, likeId: error.response.data.id});
+				await this.$store.dispatch('deleteLike', error.response.data.id);
 				this.$emit('getData');
 			}
 		},

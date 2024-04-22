@@ -17,6 +17,7 @@
         </div>
         <div class="flex items-center justify-between w-full px-[20px] py-[10px]">
           <div class="flex items-center">
+            <router-link :to="`/profile/${currentUsername}`" class="hover:opacity-[0.8] flex items-center">
             <img
               src="@/assets/devcode-logo.png"
               class="mx-auto rounded-full mr-[8px]"
@@ -25,6 +26,7 @@
               height="50"
             />
             <h1>{{ currentUsername }}</h1>
+        </router-link>
           </div>
           <div class="relative">
             <button @click="toggleDropdown" class="focus:outline-none" @click.stop>

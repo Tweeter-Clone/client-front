@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded p-5 my-2 border-inherit w-full">
+	<div class="rounded p-5 border border-inherit w-full">
 		<div class="flex gap-5 pb-5">
 			<img
 				v-if="currentId !== userId"
@@ -16,11 +16,13 @@
 			<div class="w-full">
 				<div class="flex justify-between items-center">
 					<div>
-						<p>
-							<span class="font-black">{{ username }}</span>
+						<p class="text-[14px]">
+                            <router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
+							<span class="font-semibold">{{ username }}</span>
 							<span class="text-gray-400"
 								>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 							>
+                        </router-link>
 							<span class="mx-[4px]">·</span>
 						<span class="text-gray-500">{{ formatTimeAgo(createdAt) }}</span>
 						</p>
@@ -35,11 +37,11 @@
 						</div>
 					</div>
 				</div>
-				<p class="whitespace-pre-line">{{ content }}</p>
+				<p class="whitespace-pre-line text-[14px]">{{ content }}</p>
 			</div>
 		</div>
 		<div>
-			<p class="text-gray-500">{{ formatCreatedAt(createdAt) }}</p>
+			<p class="text-gray-500 text-[14px]">{{ formatCreatedAt(createdAt) }}</p>
 		</div>
 	</div>
 </template>

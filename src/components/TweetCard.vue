@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded p-5 border-inherit" @click="showDropdown = false">
+	<div class="rounded p-5 border border-inherit" @click="showDropdown = false">
 		<div class="flex gap-5 pb-5">
 			<img
 				v-if="currentId !== userId"
@@ -15,11 +15,13 @@
 			/>
 			<div class="w-full">
 				<div class="flex justify-between w-full">
-					<p>
-						<span class="font-black">{{ username }}</span>
+					<p class="text-[14px]">
+						<router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
+						<span class="font-semibold">{{ username }}</span>
 						<span class="text-gray-400"
 							>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 						>
+						</router-link>
 						<span class="mx-[4px]">·</span>
 						<span class="text-gray-500">{{ formatTimeAgo(createdAt === updatedAt ? createdAt : updatedAt) }}</span>
 					</p>
@@ -28,17 +30,17 @@
 							<font-awesome-icon icon="fa-solid fa-ellipsis-h" />
 						</button>
 						<div v-if="showDropdown && !editMode" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
-							<a v-if="currentId === userId" @click.prevent="toggleEditMode" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Edit</a>
-							<a v-if="currentId === userId" @click.prevent="deleteTweet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Delete</a>
-							<a v-if="currentId !== userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Follow</a>
+							<a v-if="currentId === userId" @click.prevent="toggleEditMode" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">Edit</a>
+							<a v-if="currentId === userId" @click.prevent="deleteTweet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">Delete</a>
+							<a v-if="currentId !== userId" @click.prevent="handleFollower" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">{{ isFollowed !== 0 ? 'Unfollow' : 'Follow' }}</a>
 						</div>
 					</div>
 				</div>
-				<p v-if="!editMode" class="whitespace-pre-line">{{ content }}</p>
+				<p class="text-[14px]" v-if="!editMode">{{ content }}</p>
 				<form v-if="editMode" @submit.prevent="updateTweet">
 					<textarea
 						v-model="tweet"
-						class="w-full mt-2 p-2 border-gray-300 rounded-md resize-none block"
+						class="w-full mt-2 p-2 border border-gray-300 rounded-md resize-none block text-[14px]"
 						placeholder="What's happening?"
 						rows="3"
 						cols="100"
@@ -47,13 +49,12 @@
 						<button
 							:disabled="tweet.trim() === '' || loading"
 							@click="updateTweet"
-							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-75"
+							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-75 text-[14px]"
 						>
 							{{ loading ? 'Loading...' : 'Save' }}
 						</button>
-						<span
-							:class="{ 'text-red-500': tweet.length > 280 }"
-							class="text-gray-500"
+                        <span
+							:class="`${tweet.length > 280 ? 'text-red-500' : 'text-gray-500'} text-[14px]`"
 						>
 							{{ remainingCharacters }} characters remaining
 						</span>
@@ -63,20 +64,21 @@
 		</div>
 		<div class="flex justify-between">
 			<div class="flex items-center">
-				<p class="text-gray-500">{{ formatCreatedAt(createdAt === updatedAt ? createdAt : updatedAt) }} </p>
-				<p v-if="createdAt !== updatedAt"><span class="mx-[4px]">·</span><span class="text-gray-500">{{ createdAt === updatedAt ? '' : 'Edited' }}</span></p>
+				<p class="text-gray-500 text-[14px]">{{ formatCreatedAt(createdAt === updatedAt ? createdAt : updatedAt) }} </p>
+				<p v-if="createdAt !== updatedAt" class="text-[14px]"><span class="mx-[4px]">·</span><span class="text-gray-500">{{ createdAt === updatedAt ? '' : 'Edited' }}</span></p>
 			</div>
 			<div class="action flex justify-end gap-5">
-                    <router-link :to="`/tweet/${id}`" class="hover:text-gray-500">
+				<router-link :to="`/tweet/${id}`" class="hover:text-gray-500 text-[14px]">
 					<font-awesome-icon icon="far fa-comment" /> Comment ({{
 						comments
-					}})</router-link>
+					}})</router-link
+				>
 				<button
 					type="button"
-                    @click="handleLike"
-					class="hover:text-gray-500"
+					@click="handleLike"
+					class="hover:text-gray-500 text-[14px]"
 				>
-                <font-awesome-icon :icon="isLiked === 0 ? 'far fa-heart' : 'fa-solid fa-heart'" /> Love ({{
+					<font-awesome-icon :icon="isLiked === 0 ? 'far fa-heart' : 'fa-solid fa-heart'" /> Love ({{
 						likes
 					}})
 				</button>
@@ -99,6 +101,7 @@ export default {
 		comments: Number,
 		likes: Number,
 		isLiked: Number,
+		isFollowed: Number,
 		createdAt: String,
 		updatedAt: String,
 	},
@@ -174,7 +177,16 @@ export default {
 				await this.$store.dispatch('addLike', this.id);
 				this.$emit('getData');
 			} catch (error) {
-				await this.$store.dispatch('deleteLike', { likeId: error.response.data.id});
+				await this.$store.dispatch('deleteLike',  error.response.data.id);
+				this.$emit('getData');
+			}
+		},
+		async handleFollower() {
+			try{
+				await this.$store.dispatch('addFollower', this.userId);
+				this.$emit('getData');
+			} catch (error) {
+				await this.$store.dispatch('deleteFollower', error.response.data.id);
 				this.$emit('getData');
 			}
 		},

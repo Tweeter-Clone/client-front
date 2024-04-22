@@ -9,12 +9,10 @@
 			<div class="w-full">
 				<div class="flex justify-between w-full">
 					<p class="text-[14px]">
-                        <router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
 						<span class="font-semibold">{{ username }}</span>
 						<span class="text-gray-400"
 							>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 						>
-                    </router-link>
 					</p>
 				</div>
 				<form @submit="addTweet">

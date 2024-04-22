@@ -16,12 +16,10 @@
 			<div class="w-full">
 				<div class="flex justify-between w-full">
 					<p class="text-[14px]">
-						<router-link :to="`/profile/${username}`" class="hover:opacity-[0.8]">
 						<span class="font-semibold">{{ username }}</span>
 						<span class="text-gray-400"
 							>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 						>
-						</router-link>
 						<span class="mx-[4px]">·</span>
 						<span class="text-gray-500">{{ formatTimeAgo(createdAt === updatedAt ? createdAt : updatedAt) }}</span>
 					</p>
@@ -148,7 +146,7 @@ export default {
 			);
 			if (confirmation) {
 				await this.$store.dispatch('deleteTweet', this.id);
-				this.$parent.getTweet();
+				this.$parent.getTweets();
 			}
 		},
 		toggleEditMode() {
@@ -168,7 +166,7 @@ export default {
 			} finally {
 				this.loading = false;
 				this.toggleEditMode();
-				this.$parent.getTweet();
+				this.$parent.getTweets();
 			}
 		},
 		async handleLike() {
@@ -176,7 +174,7 @@ export default {
 				await this.$store.dispatch('addLike', this.id);
 				this.$emit('getData');
 			} catch (error) {
-				await this.$store.dispatch('deleteLike', { likeId: error.response.data.id});
+				await this.$store.dispatch('deleteLike', error.response.data.id);
 				this.$emit('getData');
 			}
 		},

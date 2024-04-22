@@ -9,7 +9,7 @@
 			/>
 			<hr class="mt-3" />
 			<h1 class="text-[28px] font-semibold">Sign in to TweeTopia</h1>
-			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded my-3">
+			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded">
 				{{ loginErrorMessage }}
 			</div>
 			<form @submit="login">

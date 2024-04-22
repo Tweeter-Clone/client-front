@@ -131,10 +131,10 @@ export default new Vuex.Store({
 				throw error; // Rethrow the error to propagate it further if needed
 			}
 		},
-		async deleteLike(context, payload) {
+		async deleteLike(context, id) {
 			try {
 				const response = await axios.delete(
-					`${BASE_URL}/likes/${payload.likeId}`,
+					`${BASE_URL}/likes/${id}`,
 					{
 						headers: {
 							Authorization: `Bearer ${localStorage.getItem('token')}`,

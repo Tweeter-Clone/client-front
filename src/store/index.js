@@ -148,7 +148,7 @@ export default new Vuex.Store({
 				throw error; // Rethrow the error to propagate it further if needed
 			}
 		},
-		async getComment(context, id) {
+		async getComments(context, id) {
 			try {
 				const response = await axios.get(`${BASE_URL}/tweets/${id}/comments`, {
 					headers: {

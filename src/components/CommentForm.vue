@@ -129,7 +129,7 @@ export default {
 			} finally {
 				this.loading = false;
 				this.mewComment = '';
-				this.$parent.getComment();
+				this.$parent.getComments();
 			}
 		},
 		async handleLike() {

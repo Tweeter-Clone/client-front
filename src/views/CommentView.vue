@@ -18,7 +18,7 @@
         :likes="tweet.likes"
         :isLiked="tweet.is_liked"
         :createdAt="tweet.created_at"
-        @liked="getComment"
+        @getData="getCommentss"
              />
          <h2 class="text-xl font-bold p-[24px]">
                 All Comments ({{ sortedComment.length }})
@@ -35,7 +35,7 @@
         :username="comment.username"
         :content="comment.content"
         :createdAt="comment.created_at"
-        @comments="getComment"
+        @getData="getComments"
 			/>
 		</div>
 		<div v-else class="flex justify-center bg-white px-5 py-[24px] text-[#999999] font-semibold text-[24px] items-center uppercase">
@@ -62,12 +62,12 @@ export default {
 		};
 	},
 	mounted() {
-		this.getComment();
+		this.getComments();
 	},
 	methods: {
-		async getComment() {
+		async getComments() {
 			const tweetId = this.$route.params.id;
-			const response = await this.$store.dispatch('getComment', tweetId);
+			const response = await this.$store.dispatch('getComments', tweetId);
 			this.tweet = response.data.data.tweet;
 			this.commentsData = response.data.data.comments;
 		},

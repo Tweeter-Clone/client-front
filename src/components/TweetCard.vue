@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				<p v-if="!editMode">{{ content }}</p>
+				<p v-if="!editMode" class="whitespace-pre-line">{{ content }}</p>
 				<form v-if="editMode" @submit.prevent="updateTweet">
 					<textarea
 						v-model="tweet"

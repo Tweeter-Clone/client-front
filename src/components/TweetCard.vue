@@ -77,8 +77,6 @@ export default {
 			showDropdown: false, // Added state to control dropdown visibility
 		};
 	},
-	mounted() {
-	},
 	methods: {
 		toggleDropdown() {
 			this.showDropdown = !this.showDropdown; // Toggle dropdown visibility

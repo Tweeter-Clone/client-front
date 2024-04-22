@@ -102,8 +102,6 @@ export default {
 		};
 	},
 	mounted() {
-		this.getComment();
-		this.getLike();
 	},
 	methods: {
 		toggleDropdown() {
@@ -158,15 +156,6 @@ export default {
 				this.loading = false;
 				this.toggleEditMode();
 				this.$parent.getTweets();
-			}
-		},
-		async handleLike() {
-			try{
-				await this.$store.dispatch('addLike', this.id);
-				this.$emit('getData');
-			} catch (error) {
-				await this.$store.dispatch('deleteLike', error.response.data.id);
-				this.$emit('getData');
 			}
 		},
 	},

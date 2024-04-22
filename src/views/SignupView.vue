@@ -8,12 +8,12 @@
 				width="80"
 			/>
 			<hr class="mt-3" />
-			<h1 class="text-[32px] font-semibold">Create your account</h1>
-			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded my-3">
+			<h1 class="text-[28px] font-semibold">Create your account</h1>
+			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded">
 				{{ loginErrorMessage }}
 			</div>
 			<form @submit="signup">
-				<div class="relative my-3 border-solid rounded" >
+				<div class="relative my-3 border border-solid rounded" >
 					<input
 						type="text"
 						class="peer block min-h-[auto] w-full rounded border-0 focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"
@@ -22,11 +22,11 @@
 						/>
 					<label
 						for="password"
-						:class="`${username ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] leading-[2.15] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
+						:class="`${username ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'leading-[2.15] inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
 						>Username
 					</label>
 				</div>
-				<div class="relative my-3 border-solid rounded" >
+				<div class="relative my-3 border border-solid rounded" >
 					<input
 						type="password"
 						class="peer block min-h-[auto] w-full rounded border-0  focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"
@@ -35,11 +35,11 @@
 						/>
 					<label
 						for="password"
-						:class="`${password ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] leading-[2.15] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
+						:class="`${password ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'leading-[2.15] inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
 						>Password
 					</label>
 				</div>
-				<div class="relative mt-3 border-solid rounded" >
+				<div class="relative mt-3 border border-solids rounded" >
 					<input
 						type="password"
 						class="peer block min-h-[auto] w-full rounded border-0  focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"
@@ -48,7 +48,7 @@
 						/>
 					<label
 						for="password"
-						:class="`${confirmPassword ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] leading-[2.15] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
+						:class="`${confirmPassword ? '-translate-y-[1.15rem] scale-[0.8] mt-[0.65rem] leading-[1]' : 'leading-[2.15] inline'} peer-focus:inline pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate peer-focus:mt-[0.60rem] bg-white text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:leading-[1] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 us:dark:peer-foctext-primary`"
 						>Confirm Password
 					</label>
 				</div>

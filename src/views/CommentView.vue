@@ -34,6 +34,7 @@
         :userId="comment.user_id"
         :username="comment.username"
         :content="comment.content"
+        :isFollowed="comment.is_followed"
         :createdAt="comment.created_at"
         @getData="getComments"
 			/>

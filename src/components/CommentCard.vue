@@ -33,7 +33,7 @@
 						</button>
 						<div v-if="showDropdown" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20" @click.stop>
 							<a v-if="currentId === userId || isUserTweet" @click.prevent="deleteComment" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete</a>
-							<a v-if="currentId !== userId"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Follow</a>
+							<a v-if="currentId !== userId" @click.prevent="handleFollower" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer text-[14px]">{{ isFollowed !== 0 ? 'Unfollow' : 'Follow' }}</a>
 						</div>
 					</div>
 				</div>
@@ -59,6 +59,7 @@ export default {
 		userId: Number,
 		username: String,
 		content: String,
+        isFollowed: Number,
 		createdAt: String,
 	},
 	data() {
@@ -95,7 +96,16 @@ export default {
 		async deleteComment(){
 			await this.$store.dispatch('deleteComment', { tweetId: this.tweetId, commentId: this.id});
 			this.$emit('getData');
-		}
+		},
+        async handleFollower() {
+			try{
+				await this.$store.dispatch('addFollower', this.userId);
+				this.$emit('getData');
+			} catch (error) {
+				await this.$store.dispatch('deleteFollower', error.response.data.id);
+				this.$emit('getData');
+			}
+		},
 	},
 	computed: {
 		remainingCharacters() {

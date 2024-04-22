@@ -109,10 +109,6 @@ export default {
 			editMode: false,
 		};
 	},
-	mounted() {
-		this.getComment();
-		this.getLike();
-	},
 	methods: {
 		toggleDropdown() {
 			this.showDropdown = !this.showDropdown; // Toggle dropdown visibility

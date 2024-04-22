@@ -19,7 +19,7 @@
 						<p>
 							<span class="font-black">{{ username }}</span>
 							<span class="text-gray-400"
-								>@{{ username.replace(/\s/g, '') }}{{ userId }} {{ userId }}</span
+								>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 							>
 							<span class="mx-[4px]">·</span>
 						<span class="text-gray-500">{{ formatTimeAgo(createdAt) }}</span>

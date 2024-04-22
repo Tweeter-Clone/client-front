@@ -35,7 +35,7 @@
 						</div>
 					</div>
 				</div>
-				<p>{{ content }}</p>
+				<p class="whitespace-pre-line">{{ content }}</p>
 			</div>
 		</div>
 		<div>

@@ -8,12 +8,12 @@
 				width="80"
 			/>
 			<hr class="mt-3" />
-			<h1 class="text-[32px] font-semibold">Sign in to TweeTopia</h1>
-			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded my-3">
+			<h1 class="text-[28px] font-semibold">Sign in to TweeTopia</h1>
+			<div v-if="loginFailed" class="bg-red-500 text-white p-2 rounded">
 				{{ loginErrorMessage }}
 			</div>
 			<form @submit="login">
-				<div class="relative my-3 border-solid rounded" >
+				<div class="relative my-3 border border-solid rounded" >
 					<input
 						type="text"
 						class="peer block min-h-[auto] w-full rounded border-0 focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"
@@ -26,7 +26,7 @@
 						>Username
 					</label>
 				</div>
-				<div class="relative my-3 border-solid rounded" >
+				<div class="relative my-3 border border-solid rounded" >
 					<input
 						type="password"
 						class="peer block min-h-[auto] w-full rounded border-0 focus:outline-none focus:ring-2 focus:border-blue-600 px-3 py-2"

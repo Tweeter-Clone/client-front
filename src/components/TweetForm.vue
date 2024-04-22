@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded px-5 py-3 mt-2 border-inherit bg-white">
+	<div class="rounded px-5 py-3 mt-2 border border-inherit bg-white">
 		<div class="flex gap-5">
 			<img
 				src="@/assets/devcode-logo.png"
@@ -8,8 +8,8 @@
 			/>
 			<div class="w-full">
 				<div class="flex justify-between w-full">
-					<p>
-						<span class="font-black">{{ username }}</span>
+					<p class="text-[14px]">
+						<span class="font-semibold">{{ username }}</span>
 						<span class="text-gray-400"
 							>@{{ username.replace(/\s/g, '') }}{{ userId }}</span
 						>
@@ -18,7 +18,7 @@
 				<form @submit="addTweet">
 					<textarea
 						v-model="tweet"
-						class="w-full mt-2 p-2 border-gray-300 rounded-md resize-none block"
+						class="w-full mt-2 p-2 border border-gray-300 rounded-md resize-none block text-[14px]"
 						placeholder="What's happening?"
 						rows="3"
 						cols="100"
@@ -27,13 +27,12 @@
 						<button
 							type="submit"
 							:disabled="tweet.length > 280 || tweet.trim() === '' || loading"
-							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-50"
+							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400 disabled:opacity-50 text-[14px]"
 						>
 							{{ loading ? 'Loading...' : 'Tweet' }}
 						</button>
 						<span
-							:class="{ 'text-red-500': tweet.length > 280 }"
-							class="text-gray-500"
+							:class="`${tweet.length > 280 ? 'text-red-500' : 'text-gray-500'} text-[14px]`"
 						>
 							{{ remainingCharacters }} characters remaining
 						</span>

@@ -107,15 +107,10 @@ export default {
 	},
 	data() {
 		return {
-			editMode: false,
-			tweet: '',
-			loading: false,
+            tweet: '',
 			showDropdown: false, // Added state to control dropdown visibility
+			editMode: false,
 		};
-	},
-	mounted() {
-		this.getComments();
-		this.getLike();
 	},
 	methods: {
 		toggleDropdown() {
